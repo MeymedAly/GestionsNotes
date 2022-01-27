@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
 from .models import *
-from .forms import EtudiantForms
+from .forms import NoteForms,EtudiantForms
 from django.http import JsonResponse
 from django.core import serializers
 # Create your views here.
@@ -19,8 +19,13 @@ def login(request):
 
 def index(request):
     return render(request, 'dashboard/index.html')
-def geologie(request):
-    return render(request, 'dashboard/geologie.html')
+
+def note(request):
+    context ={
+       # 'notes' : Note.objects.all(),
+        'forms' : NoteForms(),
+    }
+    return render(request, 'dashboard/note.html',context)
 
 
 
@@ -58,13 +63,7 @@ def etudiant(request):
     }
     return render(request, "dashboard/etudiant.html", context)
 
-def statistique_etudiants(request):
-    context = {
-        'statistiques' : Etudiant.objects.filter().count(),
-        'sexm' : Etudiant.objects.filter(sex='M').count(),
-        'sexf' : Etudiant.objects.filter(sex='F').count(),
-    }
-    return render(request, "dashboard/statistique_etudiants.html",context)
+
 
 
 

@@ -50,7 +50,7 @@ class Etudiant(models.Model):
     prenom_etudiant = models.CharField( max_length=100)
     matricule_etudiant = models.CharField( max_length=100)
     cin_etudiant = models.CharField( max_length=50)
-    date_nai_etudiant = models.CharField( max_length=100)
+    date_nai_etudiant = models.DateField('Date Naissance')
     adresse_etudiant = models.CharField( max_length=100)
     tel_etudiant = models.CharField( max_length=100)
     #id_resultat_etudiant  = models.ForeignKey( max_length=50)
@@ -80,10 +80,7 @@ class Note(models.Model):
     Note_examen = models.FloatField(default=0)
     etudiant= models.ForeignKey(Etudiant, on_delete=models.CASCADE)
     matiere= models.ForeignKey(Matiere,on_delete=models.CASCADE)
-    
-
-#    def __str__(self):
-#        return self.etudiant    
+       
 
 
 #class resultat(models.Model):
